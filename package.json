@@ -1,0 +1,40 @@
+{
+  "name": "mui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon -e js app/server.js --port=3333",
+    "webpack": "webpack -w",
+    "build": "webpack",
+    "tsc": "tsc -w"
+  },
+  "keywords": [],
+  "author": "upk240z",
+  "license": "ISC",
+  "devDependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.4.0",
+    "@mui/x-data-grid": "^5.5.0",
+    "@types/react-dom": "^17.0.11",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^4.7.2",
+    "localforage": "^1.10.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "recoil": "^0.6.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
+  }
+}

@@ -8,9 +8,9 @@ import {
 import Base from '../layouts/base'
 import BlockTitle from '../components/block-title'
 
-export default function Text() {
+export default function TextForm() {
   return (
-    <Base title="Text">
+    <Base title="Text Form">
       <Paper sx={{ p: 2 }}>
         <BlockTitle title="Text field"/>
         <Grid container spacing={3}>

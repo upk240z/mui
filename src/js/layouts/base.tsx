@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
+import {atom, useRecoilState} from 'recoil'
 import {
   AppBar,
   Box,
@@ -12,28 +13,50 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  Divider
+  Divider,
+  createTheme,
+  ThemeProvider,
+  Switch,
+  FormControlLabel,
+  PaletteMode,
 } from '@mui/material'
 import {
   Home as HomeIcon,
-  Info as InfoIcon,
   Menu as MenuIcon,
   TextFields as TextFieldsIcon,
   Message as MessageIcon,
   SelectAll as SelectAllIcon,
   CardGiftcard as CardGiftcardIcon,
   Grid3x3 as Grid3x3Icon,
+  SmartButton as SmartButtonIcon,
 } from '@mui/icons-material'
 
+import MenuItems from '../components/menu-items'
+
 export default function Base({children, title}: any) {
-  const [openedDrawer, setOpenedDrawer] = useState(false)
+  const paletteState = atom({
+    key: 'mode',
+    default: 'light' as PaletteMode
+  })
+  const [paletteMode, setPaletteMode] = useRecoilState<PaletteMode>(paletteState)
+  const [openedDrawer, setOpenedDrawer] = useState<boolean>(false)
+
+  const currentTheme = createTheme({
+    palette: {
+      mode: paletteMode,
+    },
+  })
 
   const toggleDrawer = () => {
     setOpenedDrawer(!openedDrawer)
   }
 
+  const togglePaletteMode = () => {
+    setPaletteMode(paletteMode == 'light' ? 'dark' : 'light')
+  }
+
   return (
-    <>
+    <ThemeProvider theme={currentTheme}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -49,6 +72,15 @@ export default function Base({children, title}: any) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Material design demo
           </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={paletteMode == 'dark'}
+                onChange={togglePaletteMode}
+              />
+            }
+            label="Dark"
+          />
         </Toolbar>
       </AppBar>
 
@@ -69,36 +101,15 @@ export default function Base({children, title}: any) {
             </ListItem>
           </List>
           <Divider/>
-          <List>
-            <ListItem button component={ Link } to="/text">
-              <ListItemIcon><TextFieldsIcon/></ListItemIcon>
-              <ListItemText>Text</ListItemText>
-            </ListItem>
-            <ListItem button component={ Link } to="/message">
-              <ListItemIcon><MessageIcon/></ListItemIcon>
-              <ListItemText>Message</ListItemText>
-            </ListItem>
-            <ListItem button component={ Link } to="/selector">
-              <ListItemIcon><SelectAllIcon/></ListItemIcon>
-              <ListItemText>Selector</ListItemText>
-            </ListItem>
-            <ListItem button component={ Link } to="/card">
-              <ListItemIcon><CardGiftcardIcon/></ListItemIcon>
-              <ListItemText>Card</ListItemText>
-            </ListItem>
-            <ListItem button component={ Link } to="/grid">
-              <ListItemIcon><Grid3x3Icon/></ListItemIcon>
-              <ListItemText>Grid</ListItemText>
-            </ListItem>
-          </List>
+          <MenuItems/>
         </Box>
       </Drawer>
 
-      <h1 style={{ textAlign: 'center' }}>{ title }</h1>
+      <Typography variant="h3" color="primary" sx={{ my: 3, textAlign: 'center' }}>{ title }</Typography>
 
       <Box>
         { children }
       </Box>
-    </>
+    </ThemeProvider>
   )
 }

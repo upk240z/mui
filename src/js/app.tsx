@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
 import {RecoilRoot} from "recoil"
 import Home from './pages/home'
-import Text from './pages/text'
+import TextForm from './pages/text-form'
+import Buttons from './pages/buttons'
 import Selector from './pages/selector'
 import Message from './pages/message'
 import Card from './pages/card'
@@ -17,7 +18,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/text" element={<Text />} />
+            <Route path="/text-form" element={<TextForm />} />
+            <Route path="/buttons" element={<Buttons />} />
             <Route path="/message" element={<Message />} />
             <Route path="/selector" element={<Selector/>}/>
             <Route path="/card" element={<Card/>}/>

@@ -25,12 +25,26 @@ export default function BoxLayout() {
   return (
     <Base title="Box Layout">
       <Paper sx={{ p: 2 }}>
-        <BlockTitle title="Center"/>
+        <BlockTitle title="Center horizontal"/>
         <MyBox sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
           <MyBox sx={{ width: 'auto' }}>
             Box1
           </MyBox>
         </MyBox>
+
+        <BlockTitle title="Center vertical"/>
+        <MyBox sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <MyBox sx={{ width: 'auto', height: 60 }}>
+              Box1
+            </MyBox>
+          </Box>
+          <Spacer/>
+          <MyBox sx={{ width: 'auto', height: 120 }}>
+            Box2
+          </MyBox>
+        </MyBox>
+
         <BlockTitle title="Direction = row"/>
         <MyBox sx={{ my: 2, display: 'flex', flexDirection: 'row' }}>
           <MyBox sx={{ width: 'auto' }}>

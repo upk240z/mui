@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {
-  Paper,
+  Paper
 } from '@mui/material'
 
 import Base from '../layouts/base'

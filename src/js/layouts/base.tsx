@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 import {atom, useRecoilState} from 'recoil'
@@ -26,6 +26,7 @@ import {
 } from '@mui/icons-material'
 
 import MenuItems from '../components/menu-items'
+import * as Functions from '../lib/functions'
 
 export default function Base({children, title}: any) {
   const paletteState = atom({
@@ -34,6 +35,7 @@ export default function Base({children, title}: any) {
   })
   const [paletteMode, setPaletteMode] = useRecoilState<PaletteMode>(paletteState)
   const [openedDrawer, setOpenedDrawer] = useState<boolean>(false)
+  const refCanvas = useRef(null)
 
   const currentTheme = createTheme({
     palette: {
@@ -48,6 +50,15 @@ export default function Base({children, title}: any) {
   const togglePaletteMode = () => {
     setPaletteMode(paletteMode == 'light' ? 'dark' : 'light')
   }
+
+  useEffect(() => {
+    if (refCanvas.current) {
+      Functions.drawQr(
+        refCanvas.current as HTMLCanvasElement,
+        window.location.href
+      )
+    }
+  }, [])
 
   return (
     <ThemeProvider theme={currentTheme}>
@@ -99,7 +110,14 @@ export default function Base({children, title}: any) {
         </Box>
       </Drawer>
 
-      <Typography variant="h3" color="primary" sx={{ my: 3, textAlign: 'center' }}>{ title }</Typography>
+      <Box sx={{ mt: 1, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+        <Box>
+          <canvas ref={refCanvas}></canvas>
+        </Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Typography variant="h3" color="primary">{ title }</Typography>
+        </Box>
+      </Box>
 
       <Box>
         { children }

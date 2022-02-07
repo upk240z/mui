@@ -9,6 +9,7 @@ import Selector from './pages/selector'
 import Message from './pages/message'
 import Card from './pages/card'
 import Grid from './pages/grid'
+import BoxLayout from './pages/box-layout'
 
 export default function App() {
 
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/selector" element={<Selector/>}/>
             <Route path="/card" element={<Card/>}/>
             <Route path="/grid" element={<Grid/>}/>
+            <Route path="/box-layout" element={<BoxLayout/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

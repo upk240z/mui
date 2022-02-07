@@ -6,7 +6,8 @@ import {
   CardGiftcard as CardGiftcardIcon, Grid3x3 as Grid3x3Icon,
   Message as MessageIcon, SelectAll as SelectAllIcon,
   SmartButton as SmartButtonIcon,
-  TextFields as TextFieldsIcon
+  TextFields as TextFieldsIcon,
+  Grid4x4Outlined as Grid4x4OutlinedIcon,
 } from "@mui/icons-material"
 
 export default function MenuItems() {
@@ -35,6 +36,10 @@ export default function MenuItems() {
       <ListItem button component={ Link } to="/grid">
         <ListItemIcon><Grid3x3Icon/></ListItemIcon>
         <ListItemText>Grid</ListItemText>
+      </ListItem>
+      <ListItem button component={ Link } to="/box-layout">
+        <ListItemIcon><Grid4x4OutlinedIcon/></ListItemIcon>
+        <ListItemText>Box Layout</ListItemText>
       </ListItem>
     </List>
   )

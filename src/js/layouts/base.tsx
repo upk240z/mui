@@ -23,12 +23,6 @@ import {
 import {
   Home as HomeIcon,
   Menu as MenuIcon,
-  TextFields as TextFieldsIcon,
-  Message as MessageIcon,
-  SelectAll as SelectAllIcon,
-  CardGiftcard as CardGiftcardIcon,
-  Grid3x3 as Grid3x3Icon,
-  SmartButton as SmartButtonIcon,
 } from '@mui/icons-material'
 
 import MenuItems from '../components/menu-items'
